@@ -75,13 +75,13 @@
   }
 
   // Header scroll class
-  $(window).scroll(function() {
-    if ($(this).scrollTop() > 100) {
+  //$(window).scroll(function() {
+    //if ($(this).scrollTop() > 100) {
       $('#header').addClass('header-scrolled');
-    } else {
-      $('#header').removeClass('header-scrolled');
-    }
-  });
+    //} //else {
+      //$('#header').removeClass('header-scrolled');
+  //  }
+  //});
 
   if ($(window).scrollTop() > 100) {
     $('#header').addClass('header-scrolled');

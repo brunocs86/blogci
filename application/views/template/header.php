@@ -26,6 +26,13 @@
 
   <!-- Main Stylesheet File -->
   <link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">
+    <?php
+        if( isset($custom) ){
+            foreach ($custom as $custom_name) {
+                $href = base_url()."public/css/".$custom_name; ?>
+                <link href="<?=$href?>" rel="stylesheet">
+           <?php }
+        } ?>
 
 </head>
 
@@ -45,20 +52,17 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="menu-has-children"><a href="">Drop Down</a>
+          <li class="menu-active"><a href="<?php echo base_url(); ?>#intro">Home</a></li>
+          <li class="menu-has-children"><a href="<?php echo base_url(); ?>#">Menu</a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
+              <li><a href="<?php echo base_url(); ?>#about">About Us</a></li>
+              <li><a href="<?php echo base_url(); ?>#services">Services</a></li>
+              <li><a href="<?php echo base_url(); ?>#portfolio">Portfolio</a></li>
+              <li><a href="<?php echo base_url(); ?>#team">Team</a></li>
             </ul>
           </li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="<?php echo base_url(); ?>#contact">Contact</a></li>
+          <li><a href="<?php echo base_url(); ?>restrict">Login</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
