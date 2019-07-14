@@ -1,8 +1,8 @@
-const BASE_URL = "192.168.33.10/codeigniter";
+const BASE_URL = "http://192.168.33.10/codeigniter/";
 
 function clearErrors() {
     $(".has-error").removeClass("has-error");
-    $(".has-block").html("");
+    $(".help-block").html("");
 }
 
 function showErrors(error_list) {
