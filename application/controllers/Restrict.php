@@ -11,10 +11,16 @@ class Restrict extends CI_Controller
 
     public function index()
     {
-        //$this->load->model("users_model");
-        //print_r($this->users_model->get_user_data("bruno"));
+        /*$this->load->model("users_model");
+        print_r($this->users_model->get_user_data("bruno"));*/
         if( $this->session->userdata("user_id") ){
-            $this->template->show('restrict.php');
+            $data = array(
+                "scripts" => array(
+                    "util.js",
+                    //"restrict.js"
+                )
+            );
+            $this->template->show('restrict.php', $data);
         }else{
             $data = array(
                 "scripts" => array(
