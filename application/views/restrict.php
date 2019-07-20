@@ -56,7 +56,7 @@
             <div id="tab_team" class="tab-pane fade"><br>
                 <div class="container-fluid">
                     <h2 class="text-center"><strong>Gerenciar Equipe</strong></h2>
-                    <button type="button" id="btn_add_member" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalTeam"><i class="fa fa-plus">&nbsp;&nbsp;Adicionar Membro</i></button>
+                    <button type="button" id="btn_add_member" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalMember"><i class="fa fa-plus">&nbsp;&nbsp;Adicionar Membro</i></button>
                     <table id="dt_team" class="table table-striped table-bordered">
                         <thead>
                         <tr class="tableheader">
@@ -172,29 +172,65 @@
 </div> <!-- End Modal Courses -->
 
 <!-- Modal Team -->
-<div class="modal fade" id="modalTeam">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+<div class="modal fade" id="modalMember">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h1 class="modal-title">Modal Heading</h1>
+                <h1 class="modal-title">Membro</h1>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body">
-                <h3>Some text to enable scrolling..</h3>
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="modal-body ">
+                <form id="form_member">
+                    <input type="hidden" name="member_id">
 
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="member_name" class="col-lg-2 control-label">Nome</label>
+                            <div class="col-lg-10">
+                                <input type="text" id="member_name" name="member_name" class="form-control" maxlength="100">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="member_photo" class="col-lg-2 control-label">Foto</label>
+                            <div class="col-lg-10">
+                                <input type="file" accept="image/*" id="member_photo" name="member_photo" class="form-control-file">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="member_description" class="col-lg-2 control-label">Descrição</label>
+                            <div class="col-lg-10">
+                                <textarea id="member_description" name="member_description" class="form-control"></textarea>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group text-center">
+                            <button type="button" id="btn_save_member" class="btn btn-outline-primary">
+                                <i class="fa fa-save"></i>&nbsp;&nbsp;Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <!-- Modal footer -->
+            <!-- Modal footer
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+            </div> -->
 
         </div>
     </div>
@@ -202,28 +238,64 @@
 
 <!-- Modal User -->
 <div class="modal fade" id="modalUser">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h1 class="modal-title">Modal Heading</h1>
+                <h1 class="modal-title">Usuário</h1>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
 
             <!-- Modal body -->
-            <div class="modal-body">
-                <h3>Some text to enable scrolling..</h3>
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div class="modal-body ">
+                <form id="form_user">
+                    <input type="hidden" name="user_id">
 
-                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="user_name" class="col-lg-2 control-label">Nome</label>
+                            <div class="col-lg-10">
+                                <input type="text" id="user_name" name="user_name" class="form-control" maxlength="100">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="user_login" class="col-lg-2 control-label">Login</label>
+                            <div class="col-lg-10">
+                                <input type="text" id="user_login" name="user_login" class="form-control" maxlength="30">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label for="member_description" class="col-lg-2 control-label">Descrição</label>
+                            <div class="col-lg-10">
+                                <textarea id="member_description" name="member_description" class="form-control"></textarea>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group text-center">
+                            <button type="button" id="btn_save_member" class="btn btn-outline-primary">
+                                <i class="fa fa-save"></i>&nbsp;&nbsp;Salvar
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <!-- Modal footer -->
+            <!-- Modal footer
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
+            </div> -->
 
         </div>
     </div>
