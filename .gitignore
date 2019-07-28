@@ -31,3 +31,4 @@ application/config/config.php
 *.sublime-project
 /tests/tests/
 /tests/results/
+/tmp/

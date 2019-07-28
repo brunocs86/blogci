@@ -126,7 +126,12 @@
                         <div class="row">
                             <label for="course_img" class="col-lg-2 control-label">Imagem</label>
                             <div class="col-lg-10">
-                                <input type="file" accept="image/*" id="course_img" name="course_img" class="form-control-file">
+								<img id="course_img_path" src="" style="max-height: 400px; max-height: 400px"/>
+								<label class="btn btn-block btn-outline-info">
+									<i class="fa fa-upload"></i>&nbsp;&nbsp;Importar Imagem
+									<input type="file" id="btn_upload_course_img" accept="image/*" style="display: none">
+								</label>
+								<input id="course_img" name="course_img" readonly>
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -197,15 +202,20 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="row">
-                            <label for="member_photo" class="col-lg-2 control-label">Foto</label>
-                            <div class="col-lg-10">
-                                <input type="file" accept="image/*" id="member_photo" name="member_photo" class="form-control-file">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                    </div>
+					<div class="form-group">
+						<div class="row">
+							<label for="member_photo" class="col-lg-2 control-label">Foto</label>
+							<div class="col-lg-10">
+								<img id="member_photo_path" src="" style="max-height: 400px; max-height: 400px"/>
+								<label class="btn btn-block btn-outline-info">
+									<i class="fa fa-upload"></i>&nbsp;&nbsp;Importar Foto
+									<input type="file" id="btn_upload_member_photo" accept="image/*" style="display: none">
+								</label>
+								<input id="member_photo" name="member_photo" readonly>
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</div>
 
                     <div class="form-group">
                         <div class="row">
@@ -254,9 +264,9 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <label for="user_name" class="col-lg-2 control-label">Nome</label>
-                            <div class="col-lg-10">
-                                <input type="text" id="user_name" name="user_name" class="form-control" maxlength="100">
+                            <label for="user_full_name" class="col-lg-3 control-label">Nome Completo</label>
+                            <div class="col-lg-9">
+                                <input type="text" id="user_full_name" name="user_full_name" class="form-control" maxlength="100">
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -264,27 +274,57 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <label for="user_login" class="col-lg-2 control-label">Login</label>
-                            <div class="col-lg-10">
+                            <label for="user_login" class="col-lg-3 control-label">Login</label>
+                            <div class="col-lg-9">
                                 <input type="text" id="user_login" name="user_login" class="form-control" maxlength="30">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="row">
-                            <label for="member_description" class="col-lg-2 control-label">Descrição</label>
-                            <div class="col-lg-10">
-                                <textarea id="member_description" name="member_description" class="form-control"></textarea>
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                    </div>
+					<div class="form-group">
+						<div class="row">
+							<label for="user_email" class="col-lg-3 control-label">E-mail</label>
+							<div class="col-lg-9">
+								<input type="text" id="user_email" name="user_email" class="form-control" maxlength="100">
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="row">
+							<label for="user_email_confirm" class="col-lg-3 control-label">Confirmar E-mail</label>
+							<div class="col-lg-9">
+								<input type="text" id="user_email_confirm" name="user_email_confirm" class="form-control" maxlength="100">
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="row">
+							<label for="user_password" class="col-lg-3 control-label">Senha</label>
+							<div class="col-lg-9">
+								<input type="password" id="user_password" name="user_password" class="form-control">
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="row">
+							<label for="user_password_confirm" class="col-lg-3 control-label">Confirmar Senha</label>
+							<div class="col-lg-9">
+								<input type="password" id="user_password_confirm" name="user_password_confirm" class="form-control">
+								<span class="help-block"></span>
+							</div>
+						</div>
+					</div>
 
                     <div class="modal-footer">
                         <div class="form-group text-center">
-                            <button type="button" id="btn_save_member" class="btn btn-outline-primary">
+                            <button type="button" id="btn_save_user" class="btn btn-outline-primary">
                                 <i class="fa fa-save"></i>&nbsp;&nbsp;Salvar
                             </button>
                         </div>
