@@ -131,7 +131,7 @@
 									<i class="fa fa-upload"></i>&nbsp;&nbsp;Importar Imagem
 									<input type="file" id="btn_upload_course_img" accept="image/*" style="display: none">
 								</label>
-								<input id="course_img" name="course_img" readonly>
+								<input id="course_img" name="course_img" hidden>
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -139,9 +139,9 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <label for="course_duration" class="col-lg-2 control-label">Duração</label>
+                            <label for="course_duration" class="col-lg-2 control-label">Duração (h)</label>
                             <div class="col-lg-10">
-                            <input type="number" min="0" id="course_duration" name="course_duration" class="form-control">
+                            <input type="number" step="0.1" id="course_duration" name="course_duration" class="form-control">
                             <span class="help-block"></span>
                         </div>
                         </div>
@@ -211,7 +211,7 @@
 									<i class="fa fa-upload"></i>&nbsp;&nbsp;Importar Foto
 									<input type="file" id="btn_upload_member_photo" accept="image/*" style="display: none">
 								</label>
-								<input id="member_photo" name="member_photo" readonly>
+								<input id="member_photo" name="member_photo" hidden>
 								<span class="help-block"></span>
 							</div>
 						</div>
