@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.33.10/blogci/";
+const BASE_URL = "http://172.17.156.141/blogci/";
 
 function clearErrors() {
     $(".has-error").removeClass("has-error");

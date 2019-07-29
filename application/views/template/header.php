@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>BizPage Bootstrap Template</title>
+  <title>Alfahelix</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="<?php echo base_url(); ?>public/img/favicon.png" rel="icon">
+  <link href="<?php echo base_url(); ?>public/img/alfa.png" rel="icon">
   <link href="<?php echo base_url(); ?>public/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -45,15 +45,17 @@
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">BizPage</a></h1>
+        <h1>
+					<a href="<?php echo base_url(); ?>" class="scrollto">Alfahelix</a>
+				</h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="<?php echo base_url(); ?>#intro">Home</a></li>
-          <li class="menu-has-children"><a href="<?php echo base_url(); ?>#">Menu</a>
+          <li class="menu-active"><a href="<?php echo base_url(); ?>">Home</a></li>
+          <li class="menu-has-children"><a href="<?php echo base_url(); ?>">Menu</a>
             <ul>
               <li><a href="<?php echo base_url(); ?>#about">About Us</a></li>
               <li><a href="<?php echo base_url(); ?>#services">Services</a></li>
