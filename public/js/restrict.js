@@ -48,5 +48,27 @@ $(function() {
 		return false;
 	});
 
+	$("#form_member").submit( function () {
+		$.ajax({
+			type: "POST",
+			url: BASE_URL+"restrict/ajax_save_team",
+			dataType: "json",
+			data: $(this).serializeArray(),
+			beforeSend: function () {
+				clearErrors();
+				$("#btn_save_member").siblings(".help-block").html(loadingImg("Verificando ..."));
+			},
+			success: function (response) {
+				clearErrors();
+				if ( response["status"] ){
+					$("#modalMember").modal("hide");
+				} else {
+					showErrorsModal(response["error_list"]);
+				}
+			}
+		})
+
+		return false;
+	});
 
 })

@@ -164,4 +164,52 @@ class Restrict extends CI_Controller
 
 		echo json_encode($json);
 	}
+
+	public function ajax_save_team()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$json = array();
+		$json["status"] = 1;
+		$json["error_list"] = array();
+
+		$this->load->model("team_model");
+
+		$data = $this->input->post();
+		$is_duplicated = $this->team_model->is_duplicated( "member_name", $data["member_name"], $data["member_id"] );
+
+		if ( empty($data["member_name"]) ){
+			$json["error_list"]["#member_name"] = "Nome do membro é obrigatório";
+		}else{
+			if( $is_duplicated ){
+				$json["error_list"]["#member_name"] = "Nome do membro já existente";
+			}
+		}
+
+		if ( !empty($json["error_list"]) ){
+			$json["status"] = 0;
+		}else{
+			if( !empty( $data["member_photo"] ) ){
+				$file_name = basename( $data["member_photo"] );
+				$old_path = getcwd()."/tmp/".$file_name;
+				$new_path = getcwd()."/public/img/team/".$file_name;
+
+				rename($old_path, $new_path);
+				$data["member_photo"] = "/public/img/team/".$file_name;
+			}
+
+			if( empty( $data["member_id"] ) ){
+				$this->team_model->insert( $data );
+			}else{
+				$course_id = $data["member_id"];
+				unset( $data["member_id"] );
+				$this->team_model->update( $course_id, $data);
+			}
+
+		}
+
+		echo json_encode($json);
+	}
 }
