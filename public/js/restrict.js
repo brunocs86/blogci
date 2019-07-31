@@ -25,4 +25,28 @@ $(function() {
 		uploadImg( $(this), $("#member_photo_path"), $("#member_photo") );
 	});
 
+	$("#form_course").submit( function () {
+		$.ajax({
+			type: "POST",
+			url: BASE_URL+"restrict/ajax_save_course",
+			dataType: "json",
+			data: $(this).serializeArray(),
+			beforeSend: function () {
+				clearErrors();
+				$("#btn_save_course").siblings(".help-block").html(loadingImg("Verificando ..."));
+			},
+			success: function (response) {
+				clearErrors();
+				if ( response["status"] ){
+					$("#modalCourses").modal("hide");
+				} else {
+					showErrorsModal(response["error_list"]);
+				}
+			}
+		})
+
+		return false;
+	});
+
+
 })

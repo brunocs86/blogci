@@ -119,7 +119,7 @@ class Restrict extends CI_Controller
 		$this->load->model("courses_model");
 
 		$data = $this->input->post();
-		$is_duplicated = $this->course_model->is_duplicated( "course_name", $data["course_name"], $data["course_id"] );
+		$is_duplicated = $this->courses_model->is_duplicated( "course_name", $data["course_name"], $data["course_id"] );
 
 		if ( empty($data["course_name"]) ){
 			$json["error_list"]["#course_name"] = "Nome do curso é obrigatório";
@@ -140,7 +140,7 @@ class Restrict extends CI_Controller
 			}
 		}
 
-		if ( empty($json["error_list"]) ){
+		if ( !empty($json["error_list"]) ){
 			$json["status"] = 0;
 		}else{
 			if( !empty( $data["course_img"] ) ){

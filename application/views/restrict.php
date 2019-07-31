@@ -159,7 +159,7 @@
 
                     <div class="modal-footer">
                         <div class="form-group text-center">
-                            <button type="button" id="btn_save_course" class="btn btn-outline-primary">
+                            <button type="submit" id="btn_save_course" class="btn btn-outline-primary">
                                 <i class="fa fa-save"></i>&nbsp;&nbsp;Salvar
                             </button>
                         </div>
