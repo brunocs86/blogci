@@ -51,7 +51,7 @@ $(function() {
 	$("#form_member").submit( function () {
 		$.ajax({
 			type: "POST",
-			url: BASE_URL+"restrict/ajax_save_team",
+			url: BASE_URL+"restrict/ajax_save_member",
 			dataType: "json",
 			data: $(this).serializeArray(),
 			beforeSend: function () {
@@ -62,6 +62,29 @@ $(function() {
 				clearErrors();
 				if ( response["status"] ){
 					$("#modalMember").modal("hide");
+				} else {
+					showErrorsModal(response["error_list"]);
+				}
+			}
+		})
+
+		return false;
+	});
+
+	$("#form_user").submit( function () {
+		$.ajax({
+			type: "POST",
+			url: BASE_URL+"restrict/ajax_save_user",
+			dataType: "json",
+			data: $(this).serializeArray(),
+			beforeSend: function () {
+				clearErrors();
+				$("#btn_save_user").siblings(".help-block").html(loadingImg("Verificando ..."));
+			},
+			success: function (response) {
+				clearErrors();
+				if ( response["status"] ){
+					$("#modalUser").modal("hide");
 				} else {
 					showErrorsModal(response["error_list"]);
 				}
