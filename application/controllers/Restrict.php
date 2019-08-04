@@ -219,37 +219,68 @@ class Restrict extends CI_Controller
 		$json["status"] = 1;
 		$json["error_list"] = array();
 
-		$this->load->model("team_model");
+		$this->load->model("users_model");
 
 		$data = $this->input->post();
-		$is_duplicated = $this->user_model->is_duplicated( "member_name", $data["member_name"], $data["member_id"] );
 
-		if ( empty($data["user_name"]) ){
-			$json["error_list"]["#user_name"] = "Nome do membro é obrigatório";
+		$is_duplicated = $this->users_model->is_duplicated( "user_full_name", $data["user_full_name"], $data["user_id"] );
+
+		if ( empty($data["user_full_name"]) ){
+			$json["error_list"]["#user_full_name"] = "Nome Completo é obrigatório";
 		}else{
 			if( $is_duplicated ){
-				$json["error_list"]["#user_name"] = "Nome do membro já existente";
+				$json["error_list"]["#user_full_name"] = "Nome Completo já existente";
+			}
+		}
+
+		$is_duplicated = $this->users_model->is_duplicated( "user_login", $data["user_login"], $data["user_id"] );
+
+		if ( empty($data["user_login"]) ){
+			$json["error_list"]["#user_login"] = "Login é obrigatório";
+		}else{
+			if( $is_duplicated ){
+				$json["error_list"]["#user_login"] = "Login já existente";
+			}
+		}
+
+		$is_duplicated = $this->users_model->is_duplicated( "user_email", $data["user_email"], $data["user_id"] );
+
+		if ( empty($data["user_email"]) ){
+			$json["error_list"]["#user_email"] = "Email é obrigatório";
+		}else{
+			if( $is_duplicated ){
+				$json["error_list"]["#user_email"] = "Email já existente";
+			}
+		}
+
+		if( $data["user_email"] <> $data["user_email_confirm"]){
+			$json["error_list"]["#user_email_confirm"] = "Emails digitados não correspondem";
+		}
+
+		if ( empty($data["user_password"]) ){
+			$json["error_list"]["#user_password"] = "Senha é obrigatória";
+		}else{
+			if( $data["user_password"] <> $data["user_password_confirm"] ){
+				$json["error_list"]["#user_password_confirm"] = "Senhas digitadas não correspondem";
 			}
 		}
 
 		if ( !empty($json["error_list"]) ){
 			$json["status"] = 0;
 		}else{
-			if( !empty( $data["member_photo"] ) ){
-				$file_name = basename( $data["member_photo"] );
-				$old_path = getcwd()."/tmp/".$file_name;
-				$new_path = getcwd()."/public/img/team/".$file_name;
 
-				rename($old_path, $new_path);
-				$data["member_photo"] = "/public/img/team/".$file_name;
-			}
+			$data["password_hash"] = password_hash($data["user_password"], PASSWORD_DEFAULT);
 
-			if( empty( $data["member_id"] ) ){
-				$this->team_model->insert( $data );
+			unset( $data["user_password"] );
+			unset( $data["user_password_confirm"] );
+			unset( $data["user_email_confirm"] );
+
+			if( empty( $data["user_id"] ) ){
+				$this->users_model->insert( $data );
 			}else{
-				$course_id = $data["member_id"];
-				unset( $data["member_id"] );
-				$this->team_model->update( $course_id, $data);
+				$user_id = $data["user_id"];
+				unset( $data["user_id"] );
+				$this->users_model->update( $user_id, $data);
 			}
 
 		}
