@@ -296,6 +296,31 @@ class Restrict extends CI_Controller
 		echo json_encode($json);
 	}
 
+	public function ajax_get_course_data()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$json = array();
+		$json["status"] = 1;
+		$json["input"] = array();
+
+		$this->load->model("courses_model");
+
+		$course_id = $this->input->post("course_id");
+		$data = $this->courses_model->get_data($course_id)->result_array()[0];
+
+		$json["input"]["course_id"] = $data["course_id"];
+		$json["input"]["course_name"] = $data["course_name"];
+		$json["input"]["course_duration"] = $data["course_duration"];
+		$json["input"]["course_description"] = $data["course_description"];
+
+		$json["img"] = base_url().$data["course_img"];
+
+		echo json_encode($json);
+	}
+
 	public function ajax_get_user_data()
 	{
 		if (!$this->input->is_ajax_request()) {
@@ -403,6 +428,43 @@ class Restrict extends CI_Controller
 			"draw" => $this->input->post("draw"),
 			"recordsTotal" => $this->team_model->records_total(),
 			"recordsFiltered" => $this->team_model->records_filtered(),
+			"data" => $data
+		);
+
+		echo json_encode($json);
+	}
+
+	public function ajax_list_users()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$this->load->model("users_model");
+		$users = $this->users_model->get_dataTable();
+		$data = array();
+
+		foreach ( $users as $user ){
+			$row = array();
+			$row[] = $user->user_full_name;
+			$row[] = $user->user_login;
+			$row[] = $user->user_email;
+
+			$row[] = '<div style="display: inline-block;">
+						<button class="btn btn-outline-primary btn-edit-user"  user_id="'.$user->user_id.'">
+							<i class="fa fa-pencil-square-o"></i>
+						</button>
+						<button class="btn btn-outline-danger btn-delete-user"  user_id="'.$user->user_id.'">
+							<i class="fa fa-trash-o"></i>
+						</button>
+					</div>';
+			$data[] = $row;
+		}
+
+		$json = array(
+			"draw" => $this->input->post("draw"),
+			"recordsTotal" => $this->users_model->records_total(),
+			"recordsFiltered" => $this->users_model->records_filtered(),
 			"data" => $data
 		);
 

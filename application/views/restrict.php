@@ -77,13 +77,13 @@
                 <div class="container-fluid">
                     <h2 class="text-center"><strong>Gerenciar Usuários</strong></h2>
                     <button type="button" id="btn_add_user" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalUser"><i class="fa fa-plus">&nbsp;&nbsp;Adicionar Usuário</i></button>
-                    <table id="dt_courses" class="table table-striped table-bordered">
+                    <table id="dt_users" class="table table-striped table-bordered">
                         <thead>
                         <tr class="tableheader">
-                            <th>Nome Completo</th>
-                            <th>Login</th>
-                            <th>E-mail</th>
-                            <th>Ações</th>
+                            <th class="dt-center">Nome Completo</th>
+                            <th class="dt-center">Login</th>
+                            <th class="dt-center">E-mail</th>
+                            <th class="dt-center no-sort">Ações</th>
                         </tr>
                         </thead>
                         <tbody>
