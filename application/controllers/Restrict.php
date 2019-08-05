@@ -365,4 +365,47 @@ class Restrict extends CI_Controller
 
 		echo json_encode($json);
 	}
+
+	public function ajax_list_member()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$this->load->model("team_model");
+		$members = $this->team_model->get_dataTable();
+		$data = array();
+
+		foreach ( $members as $member ){
+			$row = array();
+			$row[] = $member->member_name;
+
+			if( $member->member_photo ){
+				$row[] = '<img src="'.base_url().$member->member_photo.'" style="max-height: 100px; max-width: 100px; ">';
+			} else{
+				$row[] = "";
+			}
+
+			$row[] = '<div class="description">'.$member->member_description.'</div>';
+
+			$row[] = '<div style="display: inline-block;">
+						<button class="btn btn-outline-primary btn-edit-member"  member_id="'.$member->member_id.'">
+							<i class="fa fa-pencil-square-o"></i>
+						</button>
+						<button class="btn btn-outline-danger btn-delete-member"  member_id="'.$member->member_id.'">
+							<i class="fa fa-trash-o"></i>
+						</button>
+					</div>';
+			$data[] = $row;
+		}
+
+		$json = array(
+			"draw" => $this->input->post("draw"),
+			"recordsTotal" => $this->team_model->records_total(),
+			"recordsFiltered" => $this->team_model->records_filtered(),
+			"data" => $data
+		);
+
+		echo json_encode($json);
+	}
 }

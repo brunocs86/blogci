@@ -130,6 +130,20 @@ $(function() {
 			{ targets: "no-sort", orderable: false },
 			{ targets: "dt-center", className: "dt-center" }
 		]
+	});
+
+	var dt_team = $("#dt_team").DataTable({
+		"autoWidth": false,
+		"processing": true,
+		"serverSide": true,
+		"ajax":{
+			"url": BASE_URL+"restrict/ajax_list_member",
+			"type": "POST"
+		},
+		"columnDefs": [
+			{ targets: "no-sort", orderable: false },
+			{ targets: "dt-center", className: "dt-center" }
+		]
 	})
 
 })

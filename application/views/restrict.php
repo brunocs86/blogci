@@ -60,10 +60,10 @@
                     <table id="dt_team" class="table table-striped table-bordered">
                         <thead>
                         <tr class="tableheader">
-                            <th>Nome</th>
-                            <th>Foto</th>
-                            <th>Descrição</th>
-                            <th>Ações</th>
+                            <th class="dt-center">Nome</th>
+                            <th class="dt-center no-sort">Foto</th>
+                            <th class="no-sort">Descrição</th>
+                            <th class="dt-center no-sort">Ações</th>
                         </tr>
                         </thead>
                         <tbody>
