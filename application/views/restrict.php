@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3 text-center">
                 <div class="form-group">
-                    <a href="" class="btn btn-outline-dark"><i class="fa fa-user"></i></a>
-                    <a href="restrict/logoff" class="btn btn-outline-dark"><i class="fa fa-sign-out"></i></a>
+                    <a id="btn_your_user" class="btn btn-outline-dark" user_id="<?= $user_id; ?>"><i class="fa fa-user"></i></a>
+                    <a class="btn btn-outline-dark" href="restrict/logoff"><i class="fa fa-sign-out"></i></a>
                 </div>
             </div>
         </div>
@@ -39,11 +39,11 @@
                     <table id="dt_courses" class="table table-striped table-bordered">
                         <thead>
                             <tr class="tableheader">
-                                <th>Nome</th>
-                                <th>Imagem</th>
-                                <th>Duração</th>
-                                <th>Descrição</th>
-                                <th>Ações</th>
+                                <th class="dt-center">Nome</th>
+                                <th class="dt-center no-sort">Imagem</th>
+                                <th class="dt-center">Duração</th>
+                                <th class="no-sort">Descrição</th>
+                                <th class="dt-center no-sort">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,7 +110,7 @@
             <!-- Modal body -->
             <div class="modal-body ">
                 <form id="form_course">
-                    <input type="hidden" name="course_id">
+                    <input id="course_id" name="course_id" type="hidden">
 
                     <div class="form-group">
                         <div class="row">
@@ -190,7 +190,7 @@
             <!-- Modal body -->
             <div class="modal-body ">
                 <form id="form_member">
-                    <input type="hidden" name="member_id">
+                    <input id="member_id" name="member_id" type="hidden">
 
                     <div class="form-group">
                         <div class="row">
@@ -260,7 +260,7 @@
             <!-- Modal body -->
             <div class="modal-body ">
                 <form id="form_user">
-                    <input type="hidden" name="user_id">
+                    <input id="user_id" name="user_id" type="hidden">
 
                     <div class="form-group">
                         <div class="row">

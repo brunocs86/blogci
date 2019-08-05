@@ -25,14 +25,14 @@
   <link href="<?php echo base_url(); ?>public/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">
-    <?php
-        if( isset($custom) ){
-            foreach ($custom as $custom_name) {
-                $href = base_url()."public/css/".$custom_name; ?>
-                <link href="<?=$href?>" rel="stylesheet">
-           <?php }
-        } ?>
+	<link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">
+	<?php
+	if( isset($styles) ){
+		foreach ($styles as $style_name) {
+			$href = base_url()."public/css/".$style_name; ?>
+			<link href="<?=$href?>" rel="stylesheet">
+	   <?php }
+	} ?>
 
 </head>
 

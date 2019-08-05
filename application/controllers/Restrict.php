@@ -15,10 +15,18 @@ class Restrict extends CI_Controller
         print_r($this->users_model->get_user_data("bruno"));*/
         if( $this->session->userdata("user_id") ){
             $data = array(
+            	"styles" => array(
+            		"dataTables.bootstrap4.css",
+					"datatables.css"
+				),
                 "scripts" => array(
-                    "util.js",
-                    "restrict.js"
-                )
+					"sweetalert.js",
+					"dataTables.bootstrap4.js",
+					"datatables.js",
+					"util.js",
+					"restrict.js"
+                ),
+				"user_id" => $this->session->userdata("user_id")
             );
             $this->template->show('restrict.php', $data);
         }else{
@@ -284,6 +292,76 @@ class Restrict extends CI_Controller
 			}
 
 		}
+
+		echo json_encode($json);
+	}
+
+	public function ajax_get_user_data()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$json = array();
+		$json["status"] = 1;
+		$json["input"] = array();
+
+		$this->load->model("users_model");
+
+		$user_id = $this->input->post("user_id");
+		$data = $this->users_model->get_data($user_id)->result_array()[0];
+
+		$json["input"]["user_id"] = $data["user_id"];
+		$json["input"]["user_login"] = $data["user_login"];
+		$json["input"]["user_full_name"] = $data["user_full_name"];
+		$json["input"]["user_email"] = $data["user_email"];
+		$json["input"]["user_email_confirm"] = $data["user_email"];
+		$json["input"]["user_password"] = $data["password_hash"];
+		$json["input"]["user_password_confirm"] = $data["password_hash"];
+
+		echo json_encode($json);
+	}
+
+	public function ajax_list_course()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$this->load->model("courses_model");
+		$courses = $this->courses_model->get_dataTable();
+		$data = array();
+
+		foreach ( $courses as $course ){
+			$row = array();
+			$row[] = $course->course_name;
+
+			if( $course->course_img ){
+				$row[] = '<img src="'.base_url().$course->course_img.'" style="max-height: 100px; max-width: 100px; ">';
+			} else{
+				$row[] = "";
+			}
+
+			$row[] = $course->course_duration;
+			$row[] = '<div class="description">'.$course->course_description.'</div>';
+
+			$row[] = '<div style="display: inline-block;">
+						<button class="btn btn-outline-primary btn-edit-course"  course_id="'.$course->course_id.'">
+							<i class="fa fa-pencil-square-o"></i>
+						</button>
+						<button class="btn btn-outline-danger btn-delete-course"  course_id="'.$course->course_id.'">
+							<i class="fa fa-trash-o"></i>
+						</button>
+					</div>';
+			$data[] = $row;
+		}
+
+		$json = array(
+			"draw" => $this->input->post("draw"),
+			"recordsTotal" => $this->courses_model->records_total(),
+			"recordsFiltered" => $this->courses_model->records_filtered(),
+			"data" => $data
+		);
 
 		echo json_encode($json);
 	}
