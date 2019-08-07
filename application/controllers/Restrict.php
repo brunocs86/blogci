@@ -321,6 +321,30 @@ class Restrict extends CI_Controller
 		echo json_encode($json);
 	}
 
+	public function ajax_get_team_data()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$json = array();
+		$json["status"] = 1;
+		$json["input"] = array();
+
+		$this->load->model("team_model");
+
+		$member_id = $this->input->post("member_id");
+		$data = $this->team_model->get_data($member_id)->result_array()[0];
+
+		$json["input"]["member_id"] = $data["member_id"];
+		$json["input"]["member_name"] = $data["member_name"];
+		$json["input"]["member_description"] = $data["member_description"];
+
+		$json["img"] = base_url().$data["member_photo"];
+
+		echo json_encode($json);
+	}
+
 	public function ajax_get_user_data()
 	{
 		if (!$this->input->is_ajax_request()) {
@@ -343,6 +367,57 @@ class Restrict extends CI_Controller
 		$json["input"]["user_email_confirm"] = $data["user_email"];
 		$json["input"]["user_password"] = $data["password_hash"];
 		$json["input"]["user_password_confirm"] = $data["password_hash"];
+
+		echo json_encode($json);
+	}
+
+	public function ajax_delete_course_data()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$json = array();
+		$json["status"] = 1;
+
+		$this->load->model("courses_model");
+
+		$course_id = $this->input->post("course_id");
+		$this->courses_model->delete($course_id);
+
+		echo json_encode($json);
+	}
+
+	public function ajax_delete_team_data()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$json = array();
+		$json["status"] = 1;
+
+		$this->load->model("team_model");
+
+		$member_id = $this->input->post("member_id");
+		$this->team_model->delete($member_id);
+
+		echo json_encode($json);
+	}
+
+	public function ajax_delete_user_data()
+	{
+		if (!$this->input->is_ajax_request()) {
+			exit("Nenhum acesso de script é permitido.");
+		}
+
+		$json = array();
+		$json["status"] = 1;
+
+		$this->load->model("users_model");
+
+		$user_id = $this->input->post("user_id");
+		$this->users_model->delete($user_id);
 
 		echo json_encode($json);
 	}

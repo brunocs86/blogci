@@ -140,9 +140,153 @@ $(function() {
 				}
 			});
 		});
+
+		$(".btn-delete-course").click( function () {
+			course_id = $(this);
+
+			Swal.fire({
+				title: 'Atenção!',
+				text: "Deseja deletar este curso?",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#9534f',
+				cancelButtonColor: '#d33',
+				confirmButtonText: "Sim",
+				cancelButtonText: "Não",
+			}).then((result) => {
+				if (result.value) {
+					$.ajax({
+						type: "POST",
+						url: BASE_URL+"restrict/ajax_delete_course_data",
+						dataType: "json",
+						data: {"course_id": course_id.attr("course_id")},
+						success: function (response) {
+							Swal.fire(
+								'Sucesso',
+								'Ação executada com sucesso',
+								'success'
+							);
+
+							dt_course.ajax.reload();
+						}
+					});
+				}
+			});
+		});
 	}
 
-	var dt_course = $("#dt_courses").DataTable({
+	function active_btn_member () {
+		$(".btn-edit-member").click( function () {
+			$.ajax({
+				type: "POST",
+				url: BASE_URL+"restrict/ajax_get_team_data",
+				dataType: "json",
+				data: {"member_id": $(this).attr("member_id")},
+
+				success: function (response) {
+					clearErrors();
+
+					$("#form_member")[0].reset();
+					$.each( response["input"], function (id, value) {
+						$("#"+id).val(value);
+					} );
+
+					$("#member_photo_path").attr("src", response["img"]);
+
+					$("#modalMember").modal('show');
+				}
+			});
+		});
+
+		$(".btn-delete-member").click( function () {
+			member_id = $(this);
+
+			Swal.fire({
+				title: 'Atenção!',
+				text: "Deseja deletar este membro?",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#9534f',
+				cancelButtonColor: '#d33',
+				confirmButtonText: "Sim",
+				cancelButtonText: "Não",
+			}).then((result) => {
+				if (result.value) {
+					$.ajax({
+						type: "POST",
+						url: BASE_URL+"restrict/ajax_delete_team_data",
+						dataType: "json",
+						data: {"member_id": member_id.attr("member_id")},
+						success: function (response) {
+							Swal.fire(
+								'Sucesso',
+								'Ação executada com sucesso',
+								'success'
+							);
+
+							dt_team.ajax.reload();
+						}
+					});
+				}
+			});
+		});
+	}
+
+	function active_btn_user () {
+		$(".btn-edit-user").click( function () {
+			$.ajax({
+				type: "POST",
+				url: BASE_URL+"restrict/ajax_get_user_data",
+				dataType: "json",
+				data: {"user_id": $(this).attr("user_id")},
+
+				success: function (response) {
+					clearErrors();
+
+					$("#form_user")[0].reset();
+					$.each( response["input"], function (id, value) {
+						$("#"+id).val(value);
+					} );
+
+					$("#modalUser").modal('show');
+				}
+			});
+		});
+
+		$(".btn-delete-user").click( function () {
+			user_id = $(this);
+
+			Swal.fire({
+				title: 'Atenção!',
+				text: "Deseja deletar este curso?",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#9534f',
+				cancelButtonColor: '#d33',
+				confirmButtonText: "Sim",
+				cancelButtonText: "Não",
+			}).then((result) => {
+				if (result.value) {
+					$.ajax({
+						type: "POST",
+						url: BASE_URL+"restrict/ajax_delete_user_data",
+						dataType: "json",
+						data: {"user_id": user_id.attr("user_id")},
+						success: function (response) {
+							Swal.fire(
+								'Sucesso',
+								'Ação executada com sucesso',
+								'success'
+							);
+							dt_users.ajax.reload();
+						}
+					});
+				}
+			});
+		});
+	}
+
+	let dt_course = $('#dt_courses').DataTable({
 		"autoWidth": false,
 		"processing": true,
 		"serverSide": true,
@@ -154,12 +298,12 @@ $(function() {
 			{ targets: "no-sort", orderable: false },
 			{ targets: "dt-center", className: "dt-center" }
 		],
-		"initComplete": function () {
+		"drawCallback": function () {
 			active_btn_course();
 		}
 	});
 
-	var dt_team = $("#dt_team").DataTable({
+	let dt_team = $("#dt_team").DataTable({
 		"autoWidth": false,
 		"processing": true,
 		"serverSide": true,
@@ -170,10 +314,13 @@ $(function() {
 		"columnDefs": [
 			{ targets: "no-sort", orderable: false },
 			{ targets: "dt-center", className: "dt-center" }
-		]
-	})
+		],
+		"drawCallback": function () {
+			active_btn_member();
+		}
+	});
 
-	var dt_users = $("#dt_users").DataTable({
+	let dt_users = $("#dt_users").DataTable({
 		"autoWidth": false,
 		"processing": true,
 		"serverSide": true,
@@ -184,7 +331,10 @@ $(function() {
 		"columnDefs": [
 			{ targets: "no-sort", orderable: false },
 			{ targets: "dt-center", className: "dt-center" }
-		]
+		],
+		"drawCallback": function () {
+			active_btn_user();
+		}
 	})
 
 });
