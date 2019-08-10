@@ -286,7 +286,7 @@
 						<div class="row">
 							<label for="user_email" class="col-lg-3 control-label">E-mail</label>
 							<div class="col-lg-9">
-								<input type="text" id="user_email" name="user_email" class="form-control" maxlength="100">
+								<input type="email" id="user_email" name="user_email" class="form-control" maxlength="100">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -296,7 +296,7 @@
 						<div class="row">
 							<label for="user_email_confirm" class="col-lg-3 control-label">Confirmar E-mail</label>
 							<div class="col-lg-9">
-								<input type="text" id="user_email_confirm" name="user_email_confirm" class="form-control" maxlength="100">
+								<input type="email" id="user_email_confirm" name="user_email_confirm" class="form-control" maxlength="100">
 								<span class="help-block"></span>
 							</div>
 						</div>

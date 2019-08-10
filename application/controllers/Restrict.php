@@ -157,7 +157,9 @@ class Restrict extends CI_Controller
 				$new_path = getcwd()."/public/img/courses/".$file_name;
 
 				rename($old_path, $new_path);
-				$data["course_img"] = "/public/img/courses/".$file_name;
+				$data["course_img"] = "public/img/courses/".$file_name;
+			} else{
+				unset( $data["course_img"] );
 			}
 
 			if( empty( $data["course_id"] ) ){
@@ -201,7 +203,9 @@ class Restrict extends CI_Controller
 				$new_path = getcwd()."/public/img/team/".$file_name;
 
 				rename($old_path, $new_path);
-				$data["member_photo"] = "/public/img/team/".$file_name;
+				$data["member_photo"] = "public/img/team/".$file_name;
+			} else{
+				unset( $data["member_photo"] );
 			}
 
 			if( empty( $data["member_id"] ) ){

@@ -12,6 +12,11 @@ class Courses_model extends CI_Model
 		$this->load->database();
 	}
 
+	public function show_courses(){
+		$this->db->from("courses");
+		return $this->db->get()->result_array();
+	}
+
 	public function get_data($id, $select = NULL)
 	{
 		if( !empty($select)){

@@ -55,12 +55,11 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="<?php echo base_url(); ?>">Home</a></li>
-          <li class="menu-has-children"><a href="<?php echo base_url(); ?>">Menu</a>
+          <li class="menu-has-children"><a href="<?php echo base_url(); ?>#intro">Menu</a>
             <ul>
-              <li><a href="<?php echo base_url(); ?>#about">About Us</a></li>
-              <li><a href="<?php echo base_url(); ?>#services">Services</a></li>
-              <li><a href="<?php echo base_url(); ?>#portfolio">Portfolio</a></li>
-              <li><a href="<?php echo base_url(); ?>#team">Team</a></li>
+              <li><a href="<?php echo base_url(); ?>#services">Serviços</a></li>
+              <li><a href="<?php echo base_url(); ?>#portfolio">Cursos</a></li>
+              <li><a href="<?php echo base_url(); ?>#team">Equipe</a></li>
             </ul>
           </li>
           <li><a href="<?php echo base_url(); ?>#contact">Contact</a></li>

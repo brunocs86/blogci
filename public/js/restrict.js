@@ -39,6 +39,7 @@ $(function() {
 				clearErrors();
 				if ( response["status"] ){
 					$("#modalCourses").modal("hide");
+					dt_course.ajax.reload();
 				} else {
 					showErrorsModal(response["error_list"]);
 				}
@@ -62,6 +63,7 @@ $(function() {
 				clearErrors();
 				if ( response["status"] ){
 					$("#modalMember").modal("hide");
+					dt_team.ajax.reload()
 				} else {
 					showErrorsModal(response["error_list"]);
 				}
@@ -85,6 +87,7 @@ $(function() {
 				clearErrors();
 				if ( response["status"] ){
 					$("#modalUser").modal("hide");
+					dt_users.ajax.reload();
 				} else {
 					showErrorsModal(response["error_list"]);
 				}
@@ -287,6 +290,7 @@ $(function() {
 	}
 
 	let dt_course = $('#dt_courses').DataTable({
+		"oLanguage": DATATABLE_PTBR,
 		"autoWidth": false,
 		"processing": true,
 		"serverSide": true,
@@ -304,6 +308,7 @@ $(function() {
 	});
 
 	let dt_team = $("#dt_team").DataTable({
+		"oLanguage": DATATABLE_PTBR,
 		"autoWidth": false,
 		"processing": true,
 		"serverSide": true,
@@ -321,6 +326,7 @@ $(function() {
 	});
 
 	let dt_users = $("#dt_users").DataTable({
+		"oLanguage": DATATABLE_PTBR,
 		"autoWidth": false,
 		"processing": true,
 		"serverSide": true,
