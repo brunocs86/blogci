@@ -58,14 +58,16 @@ class Restrict extends CI_Controller
         $username = $this->input->post("username");
         $password = $this->input->post("password");
 
-        if(empty($username)){
+        if( empty($username) ){
             $json["status"] = 0;
             $json["error_list"]["#username"] = "Usuário não pode ser vazio!";
         }else{
             $this->load->model("users_model");
             $result = $this->users_model->get_user_data($username);
+
             if($result){
                 $user_id = $result->user_id;
+
                 $password_hash = $result->password_hash;
                 if (password_verify($password, $password_hash)){
                     $this->session->set_userdata("user_id", $user_id);
@@ -75,9 +77,11 @@ class Restrict extends CI_Controller
             }else{
                 $json["status"] = 0;
             }
+
             if ($json["status"] == 0){
                 $json["error_list"]["#btn-login"] = "Usuário e/ou senha incorreto/os!";
             }
+
         }
         echo json_encode($json);
     }
